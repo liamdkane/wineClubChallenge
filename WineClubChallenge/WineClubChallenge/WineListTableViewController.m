@@ -10,7 +10,7 @@
 #import "WineObject.h"
 #import "WineTableViewCell.h"
 #import "WineCategoryInfo.h"
-//#import "WineApiKeys.m"
+#import "APINetworkCaller.h"
 
 @interface WineListTableViewController ()
 
@@ -24,9 +24,11 @@
 
 @implementation WineListTableViewController
 
+NSString *kWineCellId = @"Wine Cell ReuseId";
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.tableView registerClass: [WineTableViewCell class] forCellReuseIdentifier:kWineCellId];
+    [self.tableView registerClass: [WineTableViewCell class] forCellReuseIdentifier:kWineCellId];    
 }
 
 
@@ -36,7 +38,16 @@
     [self updateWineTableView];
 }
 
-NSString *kWineCellId = @"Wine Cell ReuseId";
+-(void)didReceiveWineImage:(WineObject *)wineWithImage {
+    NSArray *cells = [self.tableView visibleCells];
+    for (WineTableViewCell* cell in cells) {
+        if (cell.wine == wineWithImage) {
+            UIImage *image = wineWithImage.thumbImage;
+            [cell.imageView setImage:image];
+            [cell setNeedsLayout];
+        }
+    }
+}
 
 #pragma SettingsViewDelegate Methods
 -(void)updateSort:(NSSortDescriptor *)by {
@@ -63,14 +74,18 @@ NSString *kWineCellId = @"Wine Cell ReuseId";
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    WineObject* currentWine = [self currentWinesIn:indexPath.section][indexPath.row];
     WineTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: kWineCellId forIndexPath:indexPath];
-    
     if (cell == nil) {
         cell = [[WineTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kWineCellId];
     }
-    [cell setWine: currentWine];
     
+    WineObject* currentWine = [self currentWinesIn:indexPath.section][indexPath.row];
+    if (currentWine.thumbImage) {
+        cell.imageView.image = currentWine.thumbImage;
+    } else {
+        [[[ApiNetworkCaller alloc]init] fetchImage:currentWine thumb:YES];
+    }
+    [cell setWine: currentWine];
     return cell;
 }
 
@@ -79,39 +94,13 @@ NSString *kWineCellId = @"Wine Cell ReuseId";
     return (currentCategory) ? currentCategory.name : @"All";
 }
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+}
 
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- } else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
+-(void)tableView:(UITableView *)tableView prefetchRowsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths {
+    
+}
 
 #pragma mark - Helper Functions
 
@@ -163,5 +152,40 @@ NSString *kWineCellId = @"Wine Cell ReuseId";
     }
 }
 
-
 @end
+
+
+
+/*
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
+
+/*
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source
+ [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }
+ }
+ */
+
+/*
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+ }
+ */
+
+/*
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */

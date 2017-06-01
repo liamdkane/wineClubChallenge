@@ -6,9 +6,11 @@
 //  Copyright © 2017 Liam Kane. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "WineObject.h"
 
 @protocol NetworkAnswering <NSObject>
--(void)didRecieveCategories: (NSDictionary *)json;
--(void)didRecieveWine: (NSDictionary *)json;
+-(void)didReceiveCategories: (NSDictionary *)json;
+-(void)didReceiveWine: (NSDictionary *)json;
+-(void)didReceiveWineImage:(WineObject *)wineWithImage thumb: (BOOL)isItThumb;
 @end

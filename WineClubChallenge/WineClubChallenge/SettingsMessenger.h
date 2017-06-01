@@ -1,5 +1,5 @@
 //
-//  SettingsMessanger.h
+//  SettingsMessenger.h
 //  WineClubChallenge
 //
 //  Created by C4Q on 6/1/17.
@@ -11,7 +11,7 @@
 #import "CategorySearchDelegate.h"
 #import "WineSettingsDelegate.h"
 
-@interface SettingsMessanger : NSObject<SettingsReceiverDelegate>
+@interface SettingsMessenger : NSObject<SettingsReceiverDelegate>
 
 @property id<WineSettingsDelegate> wineSettingsReciever;
 @property id<CategorySearchDelegate> categorySearchReceiver;

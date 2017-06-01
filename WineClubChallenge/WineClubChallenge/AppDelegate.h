@@ -7,14 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DataMessanger.h"
-#import "SettingsMessanger.h"
+#import "DataMessenger.h"
+#import "SettingsMessenger.h"
+#import "AFImageDownloader.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) DataMessanger *dataManager;
-@property (strong, nonatomic) SettingsMessanger *settingsMessanger;
+@property (strong, nonatomic) DataMessenger *dataManager;
+@property (strong, nonatomic) SettingsMessenger *settingsMessenger;
+@property (strong, nonatomic) AFAutoPurgingImageCache *imageCache;
+@property (strong, nonatomic) AFHTTPSessionManager *sessionManager;
 
 @end
 

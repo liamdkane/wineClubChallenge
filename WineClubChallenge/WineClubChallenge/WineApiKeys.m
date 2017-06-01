@@ -21,7 +21,7 @@ static NSString* kCategoryNameKey = @"Name";
 static NSString* kWineListKeyPath = @"Products.List";
 static NSString* kWineNameKey = @"Name";
 static NSString* kWineDescriptionKey = @"Description";
-static NSString* kWineImageUrlKeyPath = @"Labels.Url";
+static NSString* kWineImageUrlKey = @"Labels";
 static NSString* kWineVarietalKey = @"Varietal";
 static NSString* kWineWineTypeKeyPath = @"Varietal.WineType";
 

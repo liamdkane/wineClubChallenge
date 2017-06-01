@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WineObject.h"
 
 @protocol WineReceiver <NSObject>
--(void)didReceiveWines: (NSMutableArray*)wines;
+-(void)didReceiveWines: (NSMutableArray *)wines;
+-(void)didReceiveWineImage: (WineObject *)wineWithImage;
 @end

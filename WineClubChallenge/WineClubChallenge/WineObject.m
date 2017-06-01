@@ -14,15 +14,17 @@
 @implementation WineObject
 
 - (instancetype)initWithName:(NSString *)name
-        description:(NSString *)description
-           imageURL:(NSString *)imageURL
-           category:(NSArray *)category
+                 description:(NSString *)description
+               thumbImageURL:(NSString *)thumbImageURL
+               largeImageURL:(NSString *)largeImageURL
+                    category:(NSArray *)category
 {
     self = [super init];
     if(self != nil) {
         self.name = name;
         self.wineDescription = description;
-        self.imageURL = imageURL;
+        self.thumbImageURL = thumbImageURL;
+        self.largeImageURL = largeImageURL;
         self.category = category;
     }
     return self;
@@ -34,7 +36,19 @@
     NSMutableArray* category = [NSMutableArray array];
     NSString* name = wineDictionary[kWineNameKey];
     NSString* description = wineDictionary[kWineDescriptionKey];
-    NSString* imageURL = [wineDictionary valueForKeyPath:kWineImageUrlKeyPath];
+    NSArray* imageURLArray = [wineDictionary valueForKeyPath:kWineImageUrlKey];
+    NSString* thumbImageUrl;
+    NSString* largeImageUrl;
+    
+    for (NSDictionary* imageDictionary in imageURLArray) {
+        if ([imageDictionary[@"Name"] isEqualToString:@"thumbnail"]) {
+            thumbImageUrl = imageDictionary[@"Url"];
+        }
+        
+        if ([imageDictionary[@"Name"] isEqualToString:@"large"]) {
+            largeImageUrl = imageDictionary[@"Url"];
+        }
+    }
     
     NSDictionary* varietalDictionary = wineDictionary[kWineVarietalKey];
     NSDictionary* wineTypeDictionary = [wineDictionary valueForKeyPath:kWineWineTypeKeyPath];
@@ -48,8 +62,8 @@
         [category addObject:wineType];
     }
     
-
-    return [self initWithName:name description:description imageURL:imageURL category:category];
+    
+    return [self initWithName:name description:description thumbImageURL:thumbImageUrl largeImageURL:largeImageUrl category:category];
 }
 
 

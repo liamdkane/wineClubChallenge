@@ -1,14 +1,15 @@
 //
-//  SettingsMessanger.m
+//  SettingsMessenger.m
 //  WineClubChallenge
 //
 //  Created by C4Q on 6/1/17.
 //  Copyright © 2017 Liam Kane. All rights reserved.
 //
 
-#import "SettingsMessanger.h"
+#import "SettingsMessenger.h"
+#import "APINetworkCaller.h"
 
-@implementation SettingsMessanger
+@implementation SettingsMessenger
 -(void)didSelectSortType:(NSString *)key {
     BOOL ascending = [key isEqualToString:@"A-Z"];
     
@@ -30,11 +31,19 @@
     [self.wineSettingsReciever updateFilter:filterPredicate];
 }
 
--(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     NSPredicate* searchPredicate = [NSPredicate predicateWithFormat:@"name CONTAINS[cd] %@", searchBar.text];
     
+    if ([searchBar.text isEqualToString: @""]) {
+        searchPredicate = nil;
+    }
+    
     [self.categorySearchReceiver search:searchPredicate];
+}
+
+-(void)didPressAllButton {
+    
+    [[[ApiNetworkCaller alloc] init] initialFetchWines];
 }
 
 @end

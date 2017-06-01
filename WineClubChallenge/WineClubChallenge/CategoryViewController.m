@@ -15,7 +15,8 @@
 
 @interface CategoryViewController ()
 
-@property NSArray *categories;
+@property NSArray *allCategories;
+@property NSArray *filteredCategories;
 @property UITableView *categoryTableView;
 @property SettingsView *settingsView;
 
@@ -24,7 +25,6 @@
 @implementation CategoryViewController
 
 NSString *kCategoryCellId = @"Category Cell ID";
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,16 +40,19 @@ NSString *kCategoryCellId = @"Category Cell ID";
 }
 
 -(void)didReceiveCategories:(NSArray *)categories {
-    self.categories = categories;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.categoryTableView reloadData];
-    });
+    self.allCategories = categories;
+    [self search:nil];
 }
 
 #pragma SettingsViewDelegate Methods
 
 -(void)search:(NSPredicate *)forCategory {
-    
+    if (forCategory) {
+        self.filteredCategories = [self.allCategories filteredArrayUsingPredicate:forCategory];
+    } else {
+        self.filteredCategories = self.allCategories;
+    }
+    [self.categoryTableView reloadData];
 }
 
 #pragma TableView DataSource && Delegate Methods
@@ -61,12 +64,12 @@ NSString *kCategoryCellId = @"Category Cell ID";
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return self.categories.count;
+    return self.filteredCategories.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    WineCategory *currentCategory = self.categories[indexPath.row];
+    WineCategory *currentCategory = self.filteredCategories[indexPath.row];
 
     CategoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: kCategoryCellId forIndexPath:indexPath];
     

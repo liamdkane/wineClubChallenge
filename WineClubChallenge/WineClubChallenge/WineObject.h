@@ -8,14 +8,18 @@
 
 #ifndef WineObject_h
 #define WineObject_h
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface WineObject : NSObject
 
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *wineDescription;
-@property (nonatomic, retain) NSString *imageURL;
+@property (nonatomic, retain) NSString *thumbImageURL;
+@property (nonatomic, retain) NSString *largeImageURL;
 @property (nonatomic, retain) NSArray *category;
+@property (nonatomic, retain) UIImage *thumbImage;
+@property (nonatomic, retain) UIImage *largeImage;
+
 -(instancetype)initWithDictionary:(NSDictionary *)wineDictionary;
 
 

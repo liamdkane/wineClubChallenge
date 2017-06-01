@@ -12,5 +12,6 @@
 
 -(void)didSelectSortType: (NSString *)key;
 -(void)didSelectCategoryType: (NSString *)key;
+-(void)didPressAllButton;
 
 @end

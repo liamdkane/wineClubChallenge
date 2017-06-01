@@ -11,11 +11,14 @@
 #import <Foundation/Foundation.h>
 #import "NetworkAnswering.h"
 #import "WineCategoryInfo.h"
+#import "WineObject.h"
 
 @interface ApiNetworkCaller: NSObject
 -(void)fetchCategories;
 -(void)initialFetchWines;
 -(void)fetchWinesInCategory: (WineCategory *)category;
+//the bool here is pretty janky, normally i'd use an enum in swift
+-(void)fetchImage: (WineObject *)wine thumb:(BOOL)isItThumbnail;
 
 @end
 

@@ -10,6 +10,6 @@
 #import "WineReceiver.h"
 #import "WineSettingsDelegate.h"
 
-@interface WineListTableViewController : UITableViewController<WineReceiver, WineSettingsDelegate>
+@interface WineListTableViewController : UITableViewController<WineReceiver, WineSettingsDelegate, UITableViewDataSourcePrefetching>
 
 @end

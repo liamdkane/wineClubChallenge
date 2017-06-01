@@ -23,12 +23,15 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     //Init Networking layer
-    self.dataManager = [[DataMessanger alloc] init];
+    self.dataManager = [[DataMessenger alloc] init];
+    NSURLSessionConfiguration* configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    self.sessionManager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:configuration];
+    self.sessionManager.responseSerializer = [AFImageResponseSerializer serializer];
     ApiNetworkCaller *apiManager = [[ApiNetworkCaller alloc] init];
     //TODO: Add vcs for master and detail to manage.
     
-    //Init SettingsMessanger
-    self.settingsMessanger = [[SettingsMessanger alloc] init];
+    //Init SettingsMessenger
+    self.settingsMessenger = [[SettingsMessenger alloc] init];
     
     CategoryViewController *masterCategoryVC = [[CategoryViewController alloc] init];
     WineListTableViewController *wineListTVC = [[WineListTableViewController alloc] init];
@@ -42,8 +45,8 @@
     self.dataManager.categoryReceiver = masterCategoryVC;
     self.dataManager.wineReceiver = wineListTVC;
     
-    self.settingsMessanger.categorySearchReceiver = masterCategoryVC;
-    self.settingsMessanger.wineSettingsReciever = wineListTVC;
+    self.settingsMessenger.categorySearchReceiver = masterCategoryVC;
+    self.settingsMessenger.wineSettingsReciever = wineListTVC;
     
     //Making call to get the initial data
     [apiManager fetchCategories];

@@ -1,5 +1,5 @@
 //
-//  DataMessanger.m
+//  DataMessenger.m
 //  WineClubChallenge
 //
 //  Created by C4Q on 5/31/17.
@@ -7,20 +7,26 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DataMessanger.h"
+#import "DataMessenger.h"
 #import "NetworkAnswering.h"
 #import "WineCategoryInfo.h"
-#import "WineObject.h"
 #import "WineApiKeys.m"
 
-@interface DataMessanger()<NetworkAnswering>
-
-
+@interface DataMessenger()<NetworkAnswering>
 
 @end
 
-@implementation DataMessanger
--(void)didRecieveWine:(NSDictionary *)json {
+@implementation DataMessenger
+
+-(void)didReceiveWineImage:(WineObject *)wineWithImage thumb:(BOOL)isItThumb {
+    if (isItThumb) {
+        [self.wineReceiver didReceiveWineImage:wineWithImage];
+    } else {
+        
+    }
+}
+
+-(void)didReceiveWine:(NSDictionary *)json {
     
     NSArray *wineArray = [json valueForKeyPath:kWineListKeyPath];
 
@@ -33,7 +39,7 @@
     [self.wineReceiver didReceiveWines:wineObjects];
 }
 
--(void)didRecieveCategories:(NSDictionary *)json {
+-(void)didReceiveCategories:(NSDictionary *)json {
     
     NSArray *categoriesJsonArray = [json objectForKey:kCategoryInitialKey];
 
@@ -50,6 +56,7 @@
             }
         }
     }
+    
     [self.categoryReceiver didReceiveCategories:categoryObjects];
 }
 @end
