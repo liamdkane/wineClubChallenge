@@ -8,9 +8,12 @@
 
 #import "CategoryReceiver.h"
 #import <UIKit/UIKit.h>
+#import "SettingsView.h"
+#import "CategorySearchDelegate.h"
 
 @interface CategoryViewController : UIViewController<CategoryReceiver,
                                                      UITableViewDelegate,
-                                                     UITableViewDataSource>
+                                                     UITableViewDataSource,
+                                                     CategorySearchDelegate>
 
 @end

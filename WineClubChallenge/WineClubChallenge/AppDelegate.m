@@ -22,10 +22,13 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    //InitNetworking layer
+    //Init Networking layer
     self.dataManager = [[DataMessanger alloc] init];
-    APINetworkCaller *apiManager = [[APINetworkCaller alloc] init];
+    ApiNetworkCaller *apiManager = [[ApiNetworkCaller alloc] init];
     //TODO: Add vcs for master and detail to manage.
+    
+    //Init SettingsMessanger
+    self.settingsMessanger = [[SettingsMessanger alloc] init];
     
     CategoryViewController *masterCategoryVC = [[CategoryViewController alloc] init];
     WineListTableViewController *wineListTVC = [[WineListTableViewController alloc] init];
@@ -35,12 +38,14 @@
     rootSplitViewController.viewControllers = [NSArray arrayWithObjects:masterCategoryVC, detailNavVC, nil];
     
     
-    //Making call to get the initial wines
-    
-    
-    //Making call to get the categories
+    //Linking managers to views they will speak to
     self.dataManager.categoryReceiver = masterCategoryVC;
     self.dataManager.wineReceiver = wineListTVC;
+    
+    self.settingsMessanger.categorySearchReceiver = masterCategoryVC;
+    self.settingsMessanger.wineSettingsReciever = wineListTVC;
+    
+    //Making call to get the initial data
     [apiManager fetchCategories];
     [apiManager initialFetchWines];
     

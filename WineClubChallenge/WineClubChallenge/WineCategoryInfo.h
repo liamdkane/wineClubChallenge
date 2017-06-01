@@ -14,10 +14,12 @@
 
 @interface WineCategory : NSObject
 
-@property (nonatomic) NSInteger categoryId;
-@property (nonatomic) NSString *name;
--(instancetype)initWithDictionary:(NSDictionary *)categoryDictionary;
-
+@property NSInteger categoryId;
+@property NSString *name;
+@property NSString *type;
+-(instancetype)initWithDictionary:(NSDictionary* )categoryDictionary type:(NSString* )type;
+-(BOOL)isEqual:(WineCategory*)object;
+-(NSUInteger)hash;
 @end
 
 

@@ -1,33 +1,28 @@
 //
-//  CategoryTableViewCell.m
+//  WineTableViewCell.m
 //  WineClubChallenge
 //
-//  Created by C4Q on 5/31/17.
+//  Created by C4Q on 6/1/17.
 //  Copyright © 2017 Liam Kane. All rights reserved.
 //
 
-#import "CategoryTableViewCell.h"
+#import "WineTableViewCell.h"
 
-@interface CategoryTableViewCell()
-
-
-@end
-
-@implementation CategoryTableViewCell
+@implementation WineTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
 }
 
+-(void)setWine:(WineObject *)wine {
+    _wine = wine;
+    self.textLabel.text = wine.name;
+}
+
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     return self;
-}
-
--(void)setCategory:(WineCategory *)category {
-    _category = category;
-    self.textLabel.text = category.name;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

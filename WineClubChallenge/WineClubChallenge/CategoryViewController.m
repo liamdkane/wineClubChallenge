@@ -9,12 +9,15 @@
 #import "Masonry.h"
 #import "CategoryViewController.h"
 #import "WineCategoryInfo.h"
+#import "CategoryTableViewCell.h"
+#import "APINetworkCaller.h"
+#import "SettingsView.h"
 
 @interface CategoryViewController ()
 
 @property NSArray *categories;
 @property UITableView *categoryTableView;
-//@property
+@property SettingsView *settingsView;
 
 @end
 
@@ -25,9 +28,9 @@ NSString *kCategoryCellId = @"Category Cell ID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor blueColor];
-    [self setUpViewHierarchy];
-    [self setUpConstraints];
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self setupViewHierarchy];
+    [self setupConstraints];
     // Do any additional setup after loading the view.
 }
 
@@ -43,6 +46,14 @@ NSString *kCategoryCellId = @"Category Cell ID";
     });
 }
 
+#pragma SettingsViewDelegate Methods
+
+-(void)search:(NSPredicate *)forCategory {
+    
+}
+
+#pragma TableView DataSource && Delegate Methods
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     //Although its implied at 1, I always feel better having this function just so I don't have to think about where to put it when I want to change the sections
     return 1;
@@ -55,29 +66,53 @@ NSString *kCategoryCellId = @"Category Cell ID";
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: kCategoryCellId forIndexPath:indexPath];
+    WineCategory *currentCategory = self.categories[indexPath.row];
+
+    CategoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: kCategoryCellId forIndexPath:indexPath];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCategoryCellId];
+        cell = [[CategoryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCategoryCellId];
     }
-    WineCategory *currentCategory = self.categories[indexPath.row];
-    cell.textLabel.text = currentCategory.name;
+    
+    [cell setCategory:currentCategory];
     
     return cell;
 }
 
--(void)setUpViewHierarchy {
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    CategoryTableViewCell *currentCell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    [[[ApiNetworkCaller alloc] init] fetchWinesInCategory: currentCell.category];    
+}
+
+#pragma View Setup
+
+-(void)setupViewHierarchy {
     self.categoryTableView = [[UITableView alloc] init];
     self.categoryTableView.delegate = self;
     self.categoryTableView.dataSource = self;
     
-    [self.categoryTableView registerClass: [UITableViewCell class] forCellReuseIdentifier:kCategoryCellId];
+    self.settingsView = [[SettingsView alloc] init];
+    
+    [self.categoryTableView registerClass: [CategoryTableViewCell class] forCellReuseIdentifier:kCategoryCellId];
     [self.view addSubview:self.categoryTableView];
+    [self.view addSubview:self.settingsView];
 }
 
--(void)setUpConstraints {
+-(void)setupConstraints {
+    [self.settingsView mas_makeConstraints:^(MASConstraintMaker *make) {
+        //normally i would make the offset dynamic, but I couldn't find an extremely simple solution and I know that the iOS status bar is always 20 points.
+        make.top.equalTo(self.view.mas_top).offset(20);
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.bottom.equalTo(self.categoryTableView.mas_top);
+    }];
+    
     [self.categoryTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
+        make.top.equalTo(self.settingsView.mas_bottom);
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.bottom.equalTo(self.view.mas_bottomMargin);
     }];
 }
 

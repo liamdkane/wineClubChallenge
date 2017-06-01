@@ -8,107 +8,160 @@
 
 #import "WineListTableViewController.h"
 #import "WineObject.h"
+#import "WineTableViewCell.h"
+#import "WineCategoryInfo.h"
+//#import "WineApiKeys.m"
 
 @interface WineListTableViewController ()
 
-@property (nonatomic) NSMutableArray *wines;
+@property NSMutableArray *unsortedWines;
+@property NSMutableArray *sortedWines;
+@property NSMutableArray *categories;
+@property NSSortDescriptor *sortWineBy;
+@property NSPredicate *filterWineCategoryBy;
 
 @end
 
 @implementation WineListTableViewController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self.tableView registerClass: [WineTableViewCell class] forCellReuseIdentifier:kWineCellId];
+}
+
+
+#pragma Network Receiving Delegate Methods
 -(void)didReceiveWines:(NSMutableArray *)wines {
-    self.wines = wines;
-    [self.tableView reloadData];
-    
+    self.unsortedWines = wines;
+    [self updateWineTableView];
 }
 
 NSString *kWineCellId = @"Wine Cell ReuseId";
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self.tableView registerClass: [UITableViewCell class] forCellReuseIdentifier:kWineCellId];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+#pragma SettingsViewDelegate Methods
+-(void)updateSort:(NSSortDescriptor *)by {
+    self.sortWineBy = by;
+    [self updateWineTableView];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)updateFilter:(NSPredicate *)by {
+    self.filterWineCategoryBy = by;
+    [self updateWineTableView];
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return (self.categories) ? self.categories.count : 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section {
     
-    return self.wines.count;
+    return [self currentWinesIn:section].count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: kWineCellId forIndexPath:indexPath];
+    WineObject* currentWine = [self currentWinesIn:indexPath.section][indexPath.row];
+    WineTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: kWineCellId forIndexPath:indexPath];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kWineCellId];
+        cell = [[WineTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kWineCellId];
     }
-    
-    WineObject* currentWine = self.wines[indexPath.row];
-    cell.textLabel.text = currentWine.name;
+    [cell setWine: currentWine];
     
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    WineCategory* currentCategory = self.categories[section];
+    return (currentCategory) ? currentCategory.name : @"All";
 }
-*/
 
 /*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source
+ [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }
+ }
+ */
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+ }
+ */
 
 /*
-#pragma mark - Navigation
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - Helper Functions
+
+-(void)updateWineTableView {
+    
+    [self sortWines];
+    [self filterCategory];
+    
+    [self.tableView reloadData];
 }
-*/
+
+-(NSArray*)currentWinesIn:(NSInteger)section {
+    if (self.categories) {
+        WineCategory* currentCategory = self.categories[section];
+        NSPredicate* categoryPredicate = [NSPredicate predicateWithFormat:@"category CONTAINS[cd] %@", currentCategory];
+        NSArray* winesInCategory = [self.sortedWines filteredArrayUsingPredicate:categoryPredicate];
+        return winesInCategory;
+    }
+    return self.sortedWines;
+}
+
+-(void)sortWines {
+    if (self.sortWineBy) {
+        NSMutableArray *sortByName = [NSMutableArray arrayWithObject:self.sortWineBy];
+        NSMutableArray* sortedWines = (NSMutableArray *)[self.unsortedWines sortedArrayUsingDescriptors:sortByName];
+        self.sortedWines = sortedWines;
+    } else {
+        self.sortedWines = self.unsortedWines;
+    }
+}
+
+-(void)filterCategory {
+    NSMutableSet* categorySet = [NSMutableSet set];
+    
+    for (WineObject* wine in self.sortedWines) {
+        [categorySet addObjectsFromArray:wine.category];
+    }
+    
+    if (self.filterWineCategoryBy) {
+        [categorySet filterUsingPredicate:self.filterWineCategoryBy];
+        
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+        NSMutableArray *sortByName = [NSMutableArray arrayWithObject:sortDescriptor];
+        NSMutableArray *categoriesSortedByName = (NSMutableArray*)[[categorySet allObjects] sortedArrayUsingDescriptors:sortByName];
+        
+        self.categories = categoriesSortedByName;
+    } else {
+        self.categories = nil;
+    }
+}
+
 
 @end

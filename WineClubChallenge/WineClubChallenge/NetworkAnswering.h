@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @protocol NetworkAnswering <NSObject>
--(void)didRecieveCategoryies: (NSArray *)json;
--(void)didRecieveWine: (NSArray *)json;
+-(void)didRecieveCategories: (NSDictionary *)json;
+-(void)didRecieveWine: (NSDictionary *)json;
 @end

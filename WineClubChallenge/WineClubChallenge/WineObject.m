@@ -9,6 +9,7 @@
 //#import <Foundation/Foundation.h>
 #import "WineObject.h"
 #import "WineCategoryInfo.h"
+#import "WineApiKeys.m"
 
 @implementation WineObject
 
@@ -31,19 +32,19 @@
 -(instancetype)initWithDictionary:(NSDictionary *)wineDictionary {
     
     NSMutableArray* category = [NSMutableArray array];
-    NSString* name = wineDictionary[@"Name"];
-    NSString* description = wineDictionary[@"Description"];
-    NSString* imageURL = [wineDictionary valueForKeyPath:@"Labels.Url"];
+    NSString* name = wineDictionary[kWineNameKey];
+    NSString* description = wineDictionary[kWineDescriptionKey];
+    NSString* imageURL = [wineDictionary valueForKeyPath:kWineImageUrlKeyPath];
     
-    NSDictionary* varietalDictionary = wineDictionary[@"Varietal"];
-    NSDictionary* wineTypeDictionary = [wineDictionary valueForKeyPath:@"Varietal.WineType"];
+    NSDictionary* varietalDictionary = wineDictionary[kWineVarietalKey];
+    NSDictionary* wineTypeDictionary = [wineDictionary valueForKeyPath:kWineWineTypeKeyPath];
     
     if ([varietalDictionary isKindOfClass:[NSDictionary class]] ) {
-        WineCategory* varietal = [[WineCategory alloc] initWithDictionary:varietalDictionary];
+        WineCategory* varietal = [[WineCategory alloc] initWithDictionary:varietalDictionary type:kCategoryTypeVarietalTypeKey];
         [category addObject:varietal];
     }
     if ([wineTypeDictionary isKindOfClass:[NSDictionary class]]) {
-        WineCategory* wineType = [[WineCategory alloc] initWithDictionary:wineTypeDictionary];
+        WineCategory* wineType = [[WineCategory alloc] initWithDictionary:wineTypeDictionary type:kCategoryTypeWineTypeKey];
         [category addObject:wineType];
     }
     

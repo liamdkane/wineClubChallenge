@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "DataMessanger.h"
+#import "SettingsMessanger.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) DataMessanger *dataManager;
+@property (strong, nonatomic) SettingsMessanger *settingsMessanger;
 
 @end
 

@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WineCategoryInfo.h"
 
 @interface CategoryTableViewCell : UITableViewCell
+
+-(void)setCategory: (WineCategory *)category;
+@property (nonatomic) WineCategory* category;
 
 @end

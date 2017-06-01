@@ -10,10 +10,12 @@
 #define APINetworkCaller_h
 #import <Foundation/Foundation.h>
 #import "NetworkAnswering.h"
+#import "WineCategoryInfo.h"
 
-@interface APINetworkCaller: NSObject
+@interface ApiNetworkCaller: NSObject
 -(void)fetchCategories;
 -(void)initialFetchWines;
+-(void)fetchWinesInCategory: (WineCategory *)category;
 
 @end
 

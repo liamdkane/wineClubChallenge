@@ -11,9 +11,10 @@
 #import "AFNetworking.h"
 #import "AppDelegate.h"
 
-@interface APINetworkCaller()
+@interface ApiNetworkCaller()
 
 @property NSString *apiKey;
+@property NSString *baseUrl;
 @property NSURLSessionConfiguration *configuration;
 @property AFURLSessionManager *manager;
 @property id<NetworkAnswering> delegate;
@@ -21,7 +22,7 @@
 
 @end
 
-@implementation APINetworkCaller
+@implementation ApiNetworkCaller
 
 - (instancetype)init
 {
@@ -31,7 +32,8 @@
         //My choice here was to create another singleton of the networkCaller, DataMessanger, or have a default init that finds the app delegate and assigns the first DataMessanger I need to use to populate. Doing it this allows me to call on the network for images while making sure that state is only being maintained in one place
         AppDelegate* app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         self.delegate = app.dataManager;
-        self.apiKey = @"e18c783dc59001a76c2fa1f6559c6141";
+        self.apiKey = @"&apikey=e18c783dc59001a76c2fa1f6559c6141";
+        self.baseUrl = @"http://services.wine.com/api/beta2/service.svc/JSON/";
         self.configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
         self.manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:self.configuration];
     }
@@ -39,7 +41,10 @@
 }
 
 -(void)fetchCategories {
-    NSURL *URL = [NSURL URLWithString:@"http://services.wine.com/api/beta2/service.svc/JSON/categorymap?filter=categories(490)&apikey=e18c783dc59001a76c2fa1f6559c6141"];
+    
+    NSString* urlAsString = [NSString stringWithFormat:@"%@categorymap?filter=categories(490)%@", self.baseUrl, self.apiKey];
+    
+    NSURL* URL = [NSURL URLWithString: urlAsString];
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
     
     NSURLSessionDataTask *dataTask = [self.manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
@@ -47,15 +52,17 @@
             NSLog(@"Error: %@", error);
         } else {
             NSDictionary *jsonDictionary = responseObject;
-            NSArray *categoriesJsonArray = [jsonDictionary objectForKey:@"Categories"];
-            [self.delegate didRecieveCategoryies:categoriesJsonArray];
+            [self.delegate didRecieveCategories:jsonDictionary];
         }
     }];
     [dataTask resume];
 }
 
 -(void)initialFetchWines {
-    NSURL *URL = [NSURL URLWithString:@"http://services.wine.com/api/beta2/service.svc/JSON/catalog?apikey=e18c783dc59001a76c2fa1f6559c6141&size=100"];
+    
+    NSString* urlAsString = [NSString stringWithFormat:@"%@catalog?size=50%@", self.baseUrl, self.apiKey];
+
+    NSURL *URL = [NSURL URLWithString: urlAsString];
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
     
     NSURLSessionDataTask *dataTask = [self.manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
@@ -63,14 +70,34 @@
             NSLog(@"Error: %@", error);
         } else {
             NSDictionary *jsonDictionary = responseObject;
-            NSDictionary *products = [jsonDictionary objectForKey:@"Products"];
-            NSArray *wineArray = [products objectForKey:@"List"];
             
-            [self.delegate didRecieveWine:wineArray];
+            [self.delegate didRecieveWine:jsonDictionary];
         }
     }];
     [dataTask resume];
 }
 
+-(void)fetchWinesInCategory: (WineCategory *)category {
+    
+    
+    NSString* urlAsString = [NSString stringWithFormat:@"%@catalog?size=50&filter=categories(490+%ld)%@", self.baseUrl, (long)category.categoryId, self.apiKey];
+    
+    NSURL *URL = [NSURL URLWithString: urlAsString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    
+    NSURLSessionDataTask *dataTask = [self.manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        
+        if (error) {
+            NSLog(@"Error: %@", error);
+        } else {
+            NSDictionary *jsonDictionary = responseObject;
+            
+            [self.delegate didRecieveWine:jsonDictionary];
+        }
+    }];
+    [dataTask resume];
+
+
+}
 
 @end

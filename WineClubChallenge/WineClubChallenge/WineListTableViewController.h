@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "WineReceiver.h"
+#import "WineSettingsDelegate.h"
 
-@interface WineListTableViewController : UITableViewController<WineReceiver>
+@interface WineListTableViewController : UITableViewController<WineReceiver, WineSettingsDelegate>
 
 @end
