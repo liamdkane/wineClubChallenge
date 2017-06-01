@@ -7,21 +7,27 @@
 //
 
 #import "WineListTableViewController.h"
+#import "WineObject.h"
 
 @interface WineListTableViewController ()
 
-@property (nonatomic) NSMutableArray *categories;
 @property (nonatomic) NSMutableArray *wines;
-@property NSString *kWineCellReuseID;
 
 @end
 
 @implementation WineListTableViewController
 
+-(void)didReceiveWines:(NSMutableArray *)wines {
+    self.wines = wines;
+    [self.tableView reloadData];
+    
+}
+
+NSString *kWineCellId = @"Wine Cell ReuseId";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self.tableView registerClass: [UITableViewCell class] forCellReuseIdentifier:kWineCellId];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -37,21 +43,26 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return _categories.count;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section {
     
-    return _wines.count;
+    return self.wines.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: _kWineCellReuseID forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: kWineCellId forIndexPath:indexPath];
     
-    // Configure the cell...
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kWineCellId];
+    }
+    
+    WineObject* currentWine = self.wines[indexPath.row];
+    cell.textLabel.text = currentWine.name;
     
     return cell;
 }

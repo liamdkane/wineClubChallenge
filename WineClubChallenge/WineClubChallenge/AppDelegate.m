@@ -6,7 +6,10 @@
 //  Copyright © 2017 Liam Kane. All rights reserved.
 //
 
+#import "APINetworkCaller.h"
 #import "AppDelegate.h"
+#import "CategoryViewController.h"
+#import "WineListTableViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +20,33 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    //InitNetworking layer
+    self.dataManager = [[DataMessanger alloc] init];
+    APINetworkCaller *apiManager = [[APINetworkCaller alloc] init];
+    //TODO: Add vcs for master and detail to manage.
+    
+    CategoryViewController *masterCategoryVC = [[CategoryViewController alloc] init];
+    WineListTableViewController *wineListTVC = [[WineListTableViewController alloc] init];
+    UINavigationController *detailNavVC = [[UINavigationController alloc] initWithRootViewController:wineListTVC];
+    
+    UISplitViewController *rootSplitViewController = [[UISplitViewController alloc] init];
+    rootSplitViewController.viewControllers = [NSArray arrayWithObjects:masterCategoryVC, detailNavVC, nil];
+    
+    
+    //Making call to get the initial wines
+    
+    
+    //Making call to get the categories
+    self.dataManager.categoryReceiver = masterCategoryVC;
+    self.dataManager.wineReceiver = wineListTVC;
+    [apiManager fetchCategories];
+    [apiManager initialFetchWines];
+    
+    self.window.rootViewController = rootSplitViewController;
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 

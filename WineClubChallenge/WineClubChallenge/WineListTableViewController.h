@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WineReceiver.h"
 
-@interface WineListTableViewController : UITableViewController
+@interface WineListTableViewController : UITableViewController<WineReceiver>
 
 @end

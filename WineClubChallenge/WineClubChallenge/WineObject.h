@@ -16,6 +16,8 @@
 @property (nonatomic, retain) NSString *wineDescription;
 @property (nonatomic, retain) NSString *imageURL;
 @property (nonatomic, retain) NSArray *category;
+-(instancetype)initWithDictionary:(NSDictionary *)wineDictionary;
+
 
 @end
 

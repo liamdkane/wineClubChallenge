@@ -14,8 +14,9 @@
 
 @interface WineCategory : NSObject
 
-@property (nonatomic) NSInteger *id;
+@property (nonatomic) NSInteger categoryId;
 @property (nonatomic) NSString *name;
+-(instancetype)initWithDictionary:(NSDictionary *)categoryDictionary;
 
 @end
 

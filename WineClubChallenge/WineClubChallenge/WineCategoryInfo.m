@@ -6,22 +6,30 @@
 //  Copyright © 2017 Liam Kane. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "WineCategoryInfo.h"
 
 
 @implementation WineCategory
 
-//- (instancetype)init { @throw nil; }
+- (instancetype)init { @throw nil; }
 
--(instancetype)initWithName:(NSString *)name id:(NSInteger *)id
+-(instancetype)initWithName:(NSString *)name id:(NSInteger)categoryId
 {
     self = [super init];
     if(self != nil) {
-        _name = name;
-        _id = id;
+        self.name = name;
+        self.categoryId = categoryId;
+        
     }
     return self;
+}
+
+-(instancetype)initWithDictionary:(NSDictionary *)categoryDictionary {
+    
+    NSString *categoryId = [categoryDictionary objectForKeyedSubscript:@"Id"];
+    NSString *name = [categoryDictionary objectForKeyedSubscript:@"Name"];
+    
+    return [self initWithName:name id:(NSInteger)categoryId];
 }
 
 @end

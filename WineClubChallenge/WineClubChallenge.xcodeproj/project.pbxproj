@@ -10,13 +10,16 @@
 		57A19EFC9CCC30CCA57DAE09 /* libPods-WineClubChallenge.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71AB08F3E61BE9D0ED7A6166 /* libPods-WineClubChallenge.a */; };
 		81053EA31EDE67B20076F1B4 /* WineObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 81053EA21EDE67B20076F1B4 /* WineObject.m */; };
 		81053EA61EDEF34A0076F1B4 /* WineCategoryInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 81053EA51EDEF34A0076F1B4 /* WineCategoryInfo.m */; };
+		81053EA91EDF11BF0076F1B4 /* APINetworkCaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 81053EA81EDF11BF0076F1B4 /* APINetworkCaller.m */; };
 		8166B2491EDE6250002C473B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8166B2481EDE6250002C473B /* main.m */; };
 		8166B24C1EDE6250002C473B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8166B24B1EDE6250002C473B /* AppDelegate.m */; };
-		8166B2521EDE6250002C473B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8166B2501EDE6250002C473B /* Main.storyboard */; };
 		8166B2571EDE6250002C473B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8166B2561EDE6250002C473B /* Assets.xcassets */; };
 		8166B25A1EDE6250002C473B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8166B2581EDE6250002C473B /* LaunchScreen.storyboard */; };
 		8166B2651EDE6250002C473B /* WineClubChallengeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8166B2641EDE6250002C473B /* WineClubChallengeTests.m */; };
 		8166B2711EDE649E002C473B /* WineListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8166B2701EDE649E002C473B /* WineListTableViewController.m */; };
+		81A69F1A1EDF4F8200425C51 /* CategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A69F191EDF4F8200425C51 /* CategoryViewController.m */; };
+		81A69F1D1EDF521800425C51 /* DataMessanger.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A69F1C1EDF521800425C51 /* DataMessanger.m */; };
+		81A69F2F1EDF889A00425C51 /* CategoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A69F2E1EDF889A00425C51 /* CategoryTableViewCell.m */; };
 		887EE20975E721226E6161FD /* libPods-WineClubChallengeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09DB0D7F200004E024ABA925 /* libPods-WineClubChallengeTests.a */; };
 /* End PBXBuildFile section */
 
@@ -38,11 +41,12 @@
 		81053EA41EDE67BE0076F1B4 /* WineObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WineObject.h; sourceTree = "<group>"; };
 		81053EA51EDEF34A0076F1B4 /* WineCategoryInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WineCategoryInfo.m; sourceTree = "<group>"; };
 		81053EA71EDEF3610076F1B4 /* WineCategoryInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WineCategoryInfo.h; sourceTree = "<group>"; };
+		81053EA81EDF11BF0076F1B4 /* APINetworkCaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APINetworkCaller.m; sourceTree = "<group>"; };
+		81053EAA1EDF11CB0076F1B4 /* APINetworkCaller.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APINetworkCaller.h; sourceTree = "<group>"; };
 		8166B2441EDE6250002C473B /* WineClubChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WineClubChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8166B2481EDE6250002C473B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8166B24A1EDE6250002C473B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8166B24B1EDE6250002C473B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		8166B2511EDE6250002C473B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8166B2561EDE6250002C473B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8166B2591EDE6250002C473B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8166B25B1EDE6250002C473B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -51,6 +55,15 @@
 		8166B2661EDE6250002C473B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8166B26F1EDE649E002C473B /* WineListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WineListTableViewController.h; sourceTree = "<group>"; };
 		8166B2701EDE649E002C473B /* WineListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WineListTableViewController.m; sourceTree = "<group>"; };
+		81A69F181EDF4F8200425C51 /* CategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryViewController.h; sourceTree = "<group>"; };
+		81A69F191EDF4F8200425C51 /* CategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryViewController.m; sourceTree = "<group>"; };
+		81A69F1B1EDF4FDA00425C51 /* NetworkAnswering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkAnswering.h; sourceTree = "<group>"; };
+		81A69F1C1EDF521800425C51 /* DataMessanger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataMessanger.m; sourceTree = "<group>"; };
+		81A69F1E1EDF522000425C51 /* DataMessanger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataMessanger.h; sourceTree = "<group>"; };
+		81A69F1F1EDF6D7100425C51 /* CategoryReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryReceiver.h; sourceTree = "<group>"; };
+		81A69F2D1EDF889A00425C51 /* CategoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryTableViewCell.h; sourceTree = "<group>"; };
+		81A69F2E1EDF889A00425C51 /* CategoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryTableViewCell.m; sourceTree = "<group>"; };
+		81A69F301EDF8A8A00425C51 /* WineReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WineReceiver.h; sourceTree = "<group>"; };
 		83E7FE3C8B1FAC7742EB6F02 /* Pods-WineClubChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WineClubChallenge.release.xcconfig"; path = "Pods/Target Support Files/Pods-WineClubChallenge/Pods-WineClubChallenge.release.xcconfig"; sourceTree = "<group>"; };
 		CB7634B787BD82623804CC1D /* Pods-WineClubChallengeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WineClubChallengeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WineClubChallengeTests/Pods-WineClubChallengeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D1ECF8C7E909C5312EE2E320 /* Pods-WineClubChallengeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WineClubChallengeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WineClubChallengeTests/Pods-WineClubChallengeTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -110,27 +123,14 @@
 			children = (
 				8166B24A1EDE6250002C473B /* AppDelegate.h */,
 				8166B24B1EDE6250002C473B /* AppDelegate.m */,
-				81053EA41EDE67BE0076F1B4 /* WineObject.h */,
-				81053EA21EDE67B20076F1B4 /* WineObject.m */,
-				81053EA71EDEF3610076F1B4 /* WineCategoryInfo.h */,
-				81053EA51EDEF34A0076F1B4 /* WineCategoryInfo.m */,
-				8166B2501EDE6250002C473B /* Main.storyboard */,
-				8166B26F1EDE649E002C473B /* WineListTableViewController.h */,
-				8166B2701EDE649E002C473B /* WineListTableViewController.m */,
-				8166B2561EDE6250002C473B /* Assets.xcassets */,
-				8166B2581EDE6250002C473B /* LaunchScreen.storyboard */,
-				8166B25B1EDE6250002C473B /* Info.plist */,
-				8166B2471EDE6250002C473B /* Supporting Files */,
+				81A69F2D1EDF889A00425C51 /* CategoryTableViewCell.h */,
+				81A69F2E1EDF889A00425C51 /* CategoryTableViewCell.m */,
+				81A69F201EDF6F1E00425C51 /* Models */,
+				81A69F221EDF6F5700425C51 /* Networking Layer */,
+				81A69F231EDF6F6300425C51 /* View Controllers */,
+				81A69F241EDF6F7600425C51 /* Supporting Files */,
 			);
 			path = WineClubChallenge;
-			sourceTree = "<group>";
-		};
-		8166B2471EDE6250002C473B /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				8166B2481EDE6250002C473B /* main.m */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		8166B2631EDE6250002C473B /* WineClubChallengeTests */ = {
@@ -140,6 +140,61 @@
 				8166B2661EDE6250002C473B /* Info.plist */,
 			);
 			path = WineClubChallengeTests;
+			sourceTree = "<group>";
+		};
+		81A69F201EDF6F1E00425C51 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				81053EA41EDE67BE0076F1B4 /* WineObject.h */,
+				81053EA21EDE67B20076F1B4 /* WineObject.m */,
+				81053EA71EDEF3610076F1B4 /* WineCategoryInfo.h */,
+				81053EA51EDEF34A0076F1B4 /* WineCategoryInfo.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		81A69F221EDF6F5700425C51 /* Networking Layer */ = {
+			isa = PBXGroup;
+			children = (
+				81053EAA1EDF11CB0076F1B4 /* APINetworkCaller.h */,
+				81053EA81EDF11BF0076F1B4 /* APINetworkCaller.m */,
+				81A69F1E1EDF522000425C51 /* DataMessanger.h */,
+				81A69F1C1EDF521800425C51 /* DataMessanger.m */,
+				81BAADAF1EDF8F9E00CA0255 /* Networking Protocols */,
+			);
+			name = "Networking Layer";
+			sourceTree = "<group>";
+		};
+		81A69F231EDF6F6300425C51 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				81A69F181EDF4F8200425C51 /* CategoryViewController.h */,
+				81A69F191EDF4F8200425C51 /* CategoryViewController.m */,
+				8166B26F1EDE649E002C473B /* WineListTableViewController.h */,
+				8166B2701EDE649E002C473B /* WineListTableViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		81A69F241EDF6F7600425C51 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8166B2561EDE6250002C473B /* Assets.xcassets */,
+				8166B2581EDE6250002C473B /* LaunchScreen.storyboard */,
+				8166B25B1EDE6250002C473B /* Info.plist */,
+				8166B2481EDE6250002C473B /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		81BAADAF1EDF8F9E00CA0255 /* Networking Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				81A69F1B1EDF4FDA00425C51 /* NetworkAnswering.h */,
+				81A69F1F1EDF6D7100425C51 /* CategoryReceiver.h */,
+				81A69F301EDF8A8A00425C51 /* WineReceiver.h */,
+			);
+			name = "Networking Protocols";
 			sourceTree = "<group>";
 		};
 		8D452383DB8B9024CCA9E823 /* Pods */ = {
@@ -245,7 +300,6 @@
 			files = (
 				8166B25A1EDE6250002C473B /* LaunchScreen.storyboard in Resources */,
 				8166B2571EDE6250002C473B /* Assets.xcassets in Resources */,
-				8166B2521EDE6250002C473B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,9 +410,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81053EA91EDF11BF0076F1B4 /* APINetworkCaller.m in Sources */,
+				81A69F1D1EDF521800425C51 /* DataMessanger.m in Sources */,
 				81053EA61EDEF34A0076F1B4 /* WineCategoryInfo.m in Sources */,
 				8166B24C1EDE6250002C473B /* AppDelegate.m in Sources */,
+				81A69F2F1EDF889A00425C51 /* CategoryTableViewCell.m in Sources */,
 				8166B2711EDE649E002C473B /* WineListTableViewController.m in Sources */,
+				81A69F1A1EDF4F8200425C51 /* CategoryViewController.m in Sources */,
 				8166B2491EDE6250002C473B /* main.m in Sources */,
 				81053EA31EDE67B20076F1B4 /* WineObject.m in Sources */,
 			);
@@ -383,14 +441,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		8166B2501EDE6250002C473B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8166B2511EDE6250002C473B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		8166B2581EDE6250002C473B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -502,8 +552,12 @@
 				DEVELOPMENT_TEAM = N2N3K3G7JW;
 				INFOPLIST_FILE = WineClubChallenge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MACH_O_TYPE = mh_execute;
 				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4q.liamkane.WineClubChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SEPARATE_SYMBOL_EDIT = NO;
+				STRIP_INSTALLED_PRODUCT = YES;
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -515,8 +569,12 @@
 				DEVELOPMENT_TEAM = N2N3K3G7JW;
 				INFOPLIST_FILE = WineClubChallenge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MACH_O_TYPE = mh_execute;
 				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4q.liamkane.WineClubChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SEPARATE_SYMBOL_EDIT = NO;
+				STRIP_INSTALLED_PRODUCT = YES;
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
