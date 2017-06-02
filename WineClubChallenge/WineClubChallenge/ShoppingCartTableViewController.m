@@ -8,6 +8,8 @@
 
 #import "ShoppingCartTableViewController.h"
 #import "ShoppingCartTableViewCell.h"
+#import "WineDetailViewController.h"
+#import "APINetworkCaller.h"
 
 @interface ShoppingCartTableViewController ()
 
@@ -75,6 +77,15 @@ NSString* kShoppingCartTableCellId = @"ShoppingCart Cell Id";
         WineObject *currentWine = self.wines[indexPath.row];
         [self.shoppingCartMessenger removeFromShoppingCart:currentWine];
     }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    ShoppingCartTableViewCell* currentCell = [tableView cellForRowAtIndexPath:indexPath];
+    WineDetailViewController* detailVC = [[WineDetailViewController alloc] initWithWine:currentCell.wine];
+    detailVC.shoppingCartMessenger = self.shoppingCartMessenger;
+    [[[ApiNetworkCaller alloc]init]fetchImage:currentCell.wine thumb:NO];
+    
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 -(void)AddToCartButtonPressed:(WineObject *)wine quantity:(NSInteger)quantity {

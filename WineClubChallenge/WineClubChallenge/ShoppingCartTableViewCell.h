@@ -13,6 +13,7 @@
 @interface ShoppingCartTableViewCell : UITableViewCell
 
 -(void)setWine:(WineObject *)wine;
+@property (nonatomic) WineObject *wine;
 @property UILabel *quantityLabel;
 @property id<AddToCartButtonDelegate> delegate;
 @end

@@ -15,7 +15,6 @@
 @property (nonatomic) UILabel *wineNameLabel;
 @property (nonatomic) UIButton *plusOneButton;
 @property (nonatomic) UIButton *minusOneButton;
-@property (nonatomic) WineObject *wine;
 
 
 @end
@@ -49,7 +48,7 @@
     
     self.minusOneButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [self.minusOneButton setTitle:@"-1" forState:UIControlStateNormal];
-    self.minusOneButton.tag = 0;
+    self.minusOneButton.tag = -1;
     [self.minusOneButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
 
     self.quantityLabel = [[UILabel alloc] init];
