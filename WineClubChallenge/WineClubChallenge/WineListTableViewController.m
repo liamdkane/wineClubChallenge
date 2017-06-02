@@ -11,6 +11,7 @@
 #import "WineTableViewCell.h"
 #import "WineCategoryInfo.h"
 #import "APINetworkCaller.h"
+#import "WineDetailViewController.h"
 
 @interface WineListTableViewController ()
 
@@ -28,7 +29,7 @@ NSString *kWineCellId = @"Wine Cell ReuseId";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.tableView registerClass: [WineTableViewCell class] forCellReuseIdentifier:kWineCellId];    
+    [self.tableView registerClass: [WineTableViewCell class] forCellReuseIdentifier:kWineCellId];
 }
 
 
@@ -38,14 +39,19 @@ NSString *kWineCellId = @"Wine Cell ReuseId";
     [self updateWineTableView];
 }
 
--(void)didReceiveWineImage:(WineObject *)wineWithImage {
-    NSArray *cells = [self.tableView visibleCells];
-    for (WineTableViewCell* cell in cells) {
-        if (cell.wine == wineWithImage) {
-            UIImage *image = wineWithImage.thumbImage;
-            [cell.imageView setImage:image];
-            [cell setNeedsLayout];
+-(void)didReceiveWineImage:(WineObject *)wineWithImage thumb:(BOOL)isItThumb {
+    if (isItThumb) {
+        NSArray *cells = [self.tableView visibleCells];
+        for (WineTableViewCell* cell in cells) {
+            if (cell.wine == wineWithImage) {
+                UIImage *image = wineWithImage.thumbImage;
+                [cell.imageView setImage:image];
+                [cell setNeedsLayout];
+            }
         }
+    } else {
+        WineDetailViewController* detailVC = (WineDetailViewController *)self.navigationController.topViewController;
+        [detailVC setImage:wineWithImage.largeImage];
     }
 }
 
@@ -92,6 +98,15 @@ NSString *kWineCellId = @"Wine Cell ReuseId";
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     WineCategory* currentCategory = self.categories[section];
     return (currentCategory) ? currentCategory.name : @"All";
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    WineTableViewCell* currentCell = [tableView cellForRowAtIndexPath:indexPath];
+    WineDetailViewController* detailVC = [[WineDetailViewController alloc] initWithWine:currentCell.wine];
+    
+    [[[ApiNetworkCaller alloc]init]fetchImage:currentCell.wine thumb:NO];
+    
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -153,39 +168,3 @@ NSString *kWineCellId = @"Wine Cell ReuseId";
 }
 
 @end
-
-
-
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- } else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */

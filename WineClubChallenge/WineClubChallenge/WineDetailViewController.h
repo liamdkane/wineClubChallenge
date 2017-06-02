@@ -12,5 +12,5 @@
 @interface WineDetailViewController : UIViewController
 
 -(instancetype)initWithWine:(WineObject *)wine;
-
+-(void)setImage: (UIImage *)image;
 @end

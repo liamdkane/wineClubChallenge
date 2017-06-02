@@ -19,11 +19,11 @@
 @implementation DataMessenger
 
 -(void)didReceiveWineImage:(WineObject *)wineWithImage thumb:(BOOL)isItThumb {
-    if (isItThumb) {
-        [self.wineReceiver didReceiveWineImage:wineWithImage];
-    } else {
-        
-    }
+    [self.wineReceiver didReceiveWineImage:wineWithImage thumb:isItThumb];
+}
+
+-(void)didReceiveError:(NSError *)error {
+    [self.errorReceiver errorReceived:error];
 }
 
 -(void)didReceiveWine:(NSDictionary *)json {

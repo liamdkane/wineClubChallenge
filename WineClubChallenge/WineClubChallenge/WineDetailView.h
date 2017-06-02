@@ -11,6 +11,7 @@
 
 @interface WineDetailView : UIView
 
+@property UIImageView* imageView;
 -(instancetype)initWithWine: (WineObject *)wine;
 
 @end

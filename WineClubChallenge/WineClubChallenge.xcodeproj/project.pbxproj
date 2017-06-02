@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		57A19EFC9CCC30CCA57DAE09 /* libPods-WineClubChallenge.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 71AB08F3E61BE9D0ED7A6166 /* libPods-WineClubChallenge.a */; };
 		81053EA31EDE67B20076F1B4 /* WineObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 81053EA21EDE67B20076F1B4 /* WineObject.m */; };
 		81053EA61EDEF34A0076F1B4 /* WineCategoryInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 81053EA51EDEF34A0076F1B4 /* WineCategoryInfo.m */; };
 		81053EA91EDF11BF0076F1B4 /* APINetworkCaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 81053EA81EDF11BF0076F1B4 /* APINetworkCaller.m */; };
@@ -27,6 +26,11 @@
 		81BAADB81EE05F4500CA0255 /* SettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81BAADB71EE05F4500CA0255 /* SettingsView.m */; };
 		81BAADBB1EE067A800CA0255 /* SettingsLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81BAADBA1EE067A800CA0255 /* SettingsLabel.m */; };
 		81BAADBE1EE0730800CA0255 /* SettingsMessenger.m in Sources */ = {isa = PBXBuildFile; fileRef = 81BAADBD1EE0730800CA0255 /* SettingsMessenger.m */; };
+		81D6DFCB1EE0F1B400302260 /* libPods-WineClubChallengeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 81D6DFCA1EE0F1B400302260 /* libPods-WineClubChallengeTests.a */; settings = {ATTRIBUTES = (Weak, ); }; };
+		81D6DFCE1EE0F1EB00302260 /* libAFNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 81D6DFCC1EE0F1C200302260 /* libAFNetworking.a */; };
+		81D6DFD01EE0F1F300302260 /* libPods-WineClubChallenge.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 81D6DFCF1EE0F1F300302260 /* libPods-WineClubChallenge.a */; };
+		81D6DFD11EE0F1FB00302260 /* libMasonry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 81D6DFC81EE0F1A900302260 /* libMasonry.a */; };
+		81D6DFD71EE1119B00302260 /* UISplitViewController+ErrorHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D6DFD61EE1119B00302260 /* UISplitViewController+ErrorHandling.m */; };
 		887EE20975E721226E6161FD /* libPods-WineClubChallengeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09DB0D7F200004E024ABA925 /* libPods-WineClubChallengeTests.a */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +91,14 @@
 		81BAADBF1EE0734A00CA0255 /* SettingsReceiverDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsReceiverDelegate.h; sourceTree = "<group>"; };
 		81BAADC11EE076CD00CA0255 /* CategorySearchDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategorySearchDelegate.h; sourceTree = "<group>"; };
 		81BAADC21EE076DB00CA0255 /* WineSettingsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WineSettingsDelegate.h; sourceTree = "<group>"; };
+		81D6DFC81EE0F1A900302260 /* libMasonry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMasonry.a; path = "../../../../Library/Developer/Xcode/DerivedData/WineClubChallenge-gizmhggccfkmuaenznddkqvfkbqz/Build/Products/Debug-iphonesimulator/Masonry/libMasonry.a"; sourceTree = "<group>"; };
+		81D6DFCA1EE0F1B400302260 /* libPods-WineClubChallengeTests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-WineClubChallengeTests.a"; path = "Pods/../build/Debug-iphoneos/libPods-WineClubChallengeTests.a"; sourceTree = "<group>"; };
+		81D6DFCC1EE0F1C200302260 /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAFNetworking.a; path = "../../../../Library/Developer/Xcode/DerivedData/WineClubChallenge-gizmhggccfkmuaenznddkqvfkbqz/Build/Products/Debug-iphonesimulator/AFNetworking/libAFNetworking.a"; sourceTree = "<group>"; };
+		81D6DFCF1EE0F1F300302260 /* libPods-WineClubChallenge.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-WineClubChallenge.a"; path = "../../../../Library/Developer/Xcode/DerivedData/WineClubChallenge-gizmhggccfkmuaenznddkqvfkbqz/Build/Products/Debug-iphonesimulator/libPods-WineClubChallenge.a"; sourceTree = "<group>"; };
+		81D6DFD31EE1029300302260 /* NSString_StripHtml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSString_StripHtml.h; sourceTree = "<group>"; };
+		81D6DFD41EE110DB00302260 /* ErrorReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorReceiver.h; sourceTree = "<group>"; };
+		81D6DFD51EE1119B00302260 /* UISplitViewController+ErrorHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISplitViewController+ErrorHandling.h"; sourceTree = "<group>"; };
+		81D6DFD61EE1119B00302260 /* UISplitViewController+ErrorHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISplitViewController+ErrorHandling.m"; sourceTree = "<group>"; };
 		83E7FE3C8B1FAC7742EB6F02 /* Pods-WineClubChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WineClubChallenge.release.xcconfig"; path = "Pods/Target Support Files/Pods-WineClubChallenge/Pods-WineClubChallenge.release.xcconfig"; sourceTree = "<group>"; };
 		CB7634B787BD82623804CC1D /* Pods-WineClubChallengeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WineClubChallengeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WineClubChallengeTests/Pods-WineClubChallengeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D1ECF8C7E909C5312EE2E320 /* Pods-WineClubChallengeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WineClubChallengeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WineClubChallengeTests/Pods-WineClubChallengeTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -97,7 +109,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57A19EFC9CCC30CCA57DAE09 /* libPods-WineClubChallenge.a in Frameworks */,
+				81D6DFD11EE0F1FB00302260 /* libMasonry.a in Frameworks */,
+				81D6DFD01EE0F1F300302260 /* libPods-WineClubChallenge.a in Frameworks */,
+				81D6DFCE1EE0F1EB00302260 /* libAFNetworking.a in Frameworks */,
+				81D6DFCB1EE0F1B400302260 /* libPods-WineClubChallengeTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +130,10 @@
 		4E201A70326367F3E273791B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				81D6DFCF1EE0F1F300302260 /* libPods-WineClubChallenge.a */,
+				81D6DFCC1EE0F1C200302260 /* libAFNetworking.a */,
+				81D6DFCA1EE0F1B400302260 /* libPods-WineClubChallengeTests.a */,
+				81D6DFC81EE0F1A900302260 /* libMasonry.a */,
 				71AB08F3E61BE9D0ED7A6166 /* libPods-WineClubChallenge.a */,
 				09DB0D7F200004E024ABA925 /* libPods-WineClubChallengeTests.a */,
 			);
@@ -209,6 +228,9 @@
 				8166B25B1EDE6250002C473B /* Info.plist */,
 				8166B2481EDE6250002C473B /* main.m */,
 				81BAADB01EDFB18D00CA0255 /* WineApiKeys.m */,
+				81D6DFD31EE1029300302260 /* NSString_StripHtml.h */,
+				81D6DFD51EE1119B00302260 /* UISplitViewController+ErrorHandling.h */,
+				81D6DFD61EE1119B00302260 /* UISplitViewController+ErrorHandling.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -217,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				81A69F1B1EDF4FDA00425C51 /* NetworkAnswering.h */,
+				81D6DFD41EE110DB00302260 /* ErrorReceiver.h */,
 				81A69F1F1EDF6D7100425C51 /* CategoryReceiver.h */,
 				81A69F301EDF8A8A00425C51 /* WineReceiver.h */,
 			);
@@ -234,6 +257,8 @@
 				81BAADB71EE05F4500CA0255 /* SettingsView.m */,
 				81BAADB91EE067A800CA0255 /* SettingsLabel.h */,
 				81BAADBA1EE067A800CA0255 /* SettingsLabel.m */,
+				81252F871EE0DCB60097CA77 /* WineDetailView.h */,
+				81252F881EE0DCB60097CA77 /* WineDetailView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -246,8 +271,6 @@
 				81BAADC11EE076CD00CA0255 /* CategorySearchDelegate.h */,
 				81BAADC21EE076DB00CA0255 /* WineSettingsDelegate.h */,
 				81BAADBF1EE0734A00CA0255 /* SettingsReceiverDelegate.h */,
-				81252F871EE0DCB60097CA77 /* WineDetailView.h */,
-				81252F881EE0DCB60097CA77 /* WineDetailView.m */,
 			);
 			name = "Settings Layer";
 			sourceTree = "<group>";
@@ -478,6 +501,7 @@
 				8166B2491EDE6250002C473B /* main.m in Sources */,
 				81053EA31EDE67B20076F1B4 /* WineObject.m in Sources */,
 				81252F891EE0DCB60097CA77 /* WineDetailView.m in Sources */,
+				81D6DFD71EE1119B00302260 /* UISplitViewController+ErrorHandling.m in Sources */,
 				81BAADB11EDFB18D00CA0255 /* WineApiKeys.m in Sources */,
 				81252F861EE0D9B40097CA77 /* WineDetailViewController.m in Sources */,
 				81BAADB41EE0472800CA0255 /* WineTableViewCell.m in Sources */,
@@ -614,6 +638,10 @@
 				DEVELOPMENT_TEAM = N2N3K3G7JW;
 				INFOPLIST_FILE = WineClubChallenge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				MACH_O_TYPE = mh_execute;
 				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4q.liamkane.WineClubChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -631,6 +659,10 @@
 				DEVELOPMENT_TEAM = N2N3K3G7JW;
 				INFOPLIST_FILE = WineClubChallenge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				MACH_O_TYPE = mh_execute;
 				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4q.liamkane.WineClubChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";

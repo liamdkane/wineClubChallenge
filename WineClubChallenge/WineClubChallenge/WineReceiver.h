@@ -11,5 +11,5 @@
 
 @protocol WineReceiver <NSObject>
 -(void)didReceiveWines: (NSMutableArray *)wines;
--(void)didReceiveWineImage: (WineObject *)wineWithImage;
+-(void)didReceiveWineImage: (WineObject *)wineWithImage thumb:(BOOL)isItThumb;
 @end

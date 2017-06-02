@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "CategoryViewController.h"
 #import "WineListTableViewController.h"
+#import "UISplitViewController+ErrorHandling.h"
 
 @interface AppDelegate ()
 
@@ -44,6 +45,7 @@
     //Linking managers to views they will speak to
     self.dataManager.categoryReceiver = masterCategoryVC;
     self.dataManager.wineReceiver = wineListTVC;
+    self.dataManager.errorReceiver = rootSplitViewController;
     
     self.settingsMessenger.categorySearchReceiver = masterCategoryVC;
     self.settingsMessenger.wineSettingsReciever = wineListTVC;

@@ -14,6 +14,8 @@
     self = [super init];
     self.text = text;
     self.textAlignment = NSTextAlignmentCenter;
+    self.adjustsFontSizeToFitWidth = YES;
+    [self setMinimumScaleFactor:0.5];
     return self;
 }
 

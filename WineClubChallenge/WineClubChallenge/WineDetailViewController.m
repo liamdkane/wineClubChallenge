@@ -7,10 +7,13 @@
 //
 
 #import "WineDetailViewController.h"
+#import "WineDetailView.h"
+#import "Masonry.h"
 
 @interface WineDetailViewController ()
 
 @property WineObject* wine;
+@property WineDetailView* detailView;
 
 @end
 
@@ -18,7 +21,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    self.detailView = [[WineDetailView alloc] initWithWine:self.wine];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    [self.view addSubview:self.detailView];
+    [self.detailView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
 }
 
 -(instancetype)initWithWine:(WineObject *)wine {
@@ -26,9 +36,13 @@
     if (self) {
         self.wine = wine;
     }
+    [self.navigationItem setTitle:wine.name];
     return self;
 }
 
-
+-(void)setImage:(UIImage *)image {
+    [self.detailView.imageView setImage:image];
+    [self.detailView layoutIfNeeded];
+}
 
 @end

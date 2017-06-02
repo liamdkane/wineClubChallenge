@@ -13,4 +13,5 @@
 -(void)didReceiveCategories: (NSDictionary *)json;
 -(void)didReceiveWine: (NSDictionary *)json;
 -(void)didReceiveWineImage:(WineObject *)wineWithImage thumb: (BOOL)isItThumb;
+-(void)didReceiveError:(NSError *)error;
 @end

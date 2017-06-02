@@ -43,17 +43,21 @@
 
 
 -(void)fetchImage: (WineObject *)wine thumb:(BOOL)isItThumbnail{
-    AppDelegate* app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    
-    AFImageDownloader* imageDownloader = [[AFImageDownloader alloc] initWithSessionManager: app.sessionManager downloadPrioritization:AFImageDownloadPrioritizationFIFO maximumActiveDownloads:20 imageCache:app.imageCache];
     NSURL* URL = [NSURL URLWithString: isItThumbnail ? wine.thumbImageURL : wine.largeImageURL];
+    //Checking to see if there was a valid imageURL, mainly relevant for largeImageURL
+    if (URL == nil) {
+        return;
+    }
     
+    AppDelegate* app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     //checking to see if the download is already happening
     for (NSURLSessionTask* task in app.sessionManager.tasks) {
-        if ([task.originalRequest.URL.absoluteString isEqualToString:wine.thumbImageURL]) {
+        if (URL == task.originalRequest.URL) {
             return;
         }
     }
+    
+    AFImageDownloader* imageDownloader = [[AFImageDownloader alloc] initWithSessionManager: app.sessionManager downloadPrioritization:AFImageDownloadPrioritizationFIFO maximumActiveDownloads:20 imageCache:app.imageCache];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
     AFImageDownloadReceipt *task = [imageDownloader downloadImageForURLRequest:request success:^(NSURLRequest * _Nonnull request,NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull responseObject) {
@@ -62,12 +66,14 @@
         } else {
             [wine setLargeImage:responseObject];
         }
-        [self.delegate didReceiveWineImage:wine thumb:isItThumbnail];
-        \
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.delegate didReceiveWineImage:wine thumb:isItThumbnail];
+        });
     } failure:^(NSURLRequest * _Nonnull request,
                 NSHTTPURLResponse * _Nullable response,
                 NSError * _Nonnull error) {
         
+        [self.delegate didReceiveError:error];
     }];
     [task.task resume];
 }
@@ -83,10 +89,12 @@
     NSURLSessionDataTask *dataTask = [self.manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         
         if (error) {
-            NSLog(@"Error: %@", error);
+            [self.delegate didReceiveError:error];
         } else {
             NSDictionary *jsonDictionary = responseObject;
-            [self.delegate didReceiveCategories:jsonDictionary];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.delegate didReceiveCategories:jsonDictionary];
+            });
         }
     }];
     [dataTask resume];
@@ -101,11 +109,12 @@
     
     NSURLSessionDataTask *dataTask = [self.manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         if (error) {
-            NSLog(@"Error: %@", error);
+            [self.delegate didReceiveError:error];
         } else {
             NSDictionary *jsonDictionary = responseObject;
-            
-            [self.delegate didReceiveWine:jsonDictionary];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.delegate didReceiveWine:jsonDictionary];
+            });
         }
     }];
     [dataTask resume];
@@ -122,11 +131,12 @@
     NSURLSessionDataTask *dataTask = [self.manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         
         if (error) {
-            NSLog(@"Error: %@", error);
+            [self.delegate didReceiveError:error];
         } else {
             NSDictionary *jsonDictionary = responseObject;
-            
-            [self.delegate didReceiveWine:jsonDictionary];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.delegate didReceiveWine:jsonDictionary];
+            });
         }
     }];
     [dataTask resume];
