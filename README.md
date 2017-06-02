@@ -13,7 +13,7 @@ Liam Kane
 
 ##### Notes
 
-One of the biggest things I would note is that the sorting is done locally. After speaking to Mike about paginating, I decided since I wasn't going to be doing that, sorting locally would keep the app running fast. 
+One of the biggest things I would note is that the sorting is done locally. After speaking to Mike about paginating, I decided since I wasn't going to be doing that, sorting locally would keep the app running fast. The alternative being making an API call each time to get sorted data. Since I wasn't paginating, I felt this gave a more complete experience.
 
 Along the side there are categories, when those categories get clicked, it will trigger an apiCall for the first 50 of that category.
 
