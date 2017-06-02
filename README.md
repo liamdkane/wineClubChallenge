@@ -4,12 +4,12 @@
 Liam Kane
 
 ## Tools used
--XCode 8.3.2
--PostMan
+- XCode 8.3.2
+- PostMan
 
 ## Frameworks used
--[Masonry](https://github.com/SnapKit/Masonry) 
--[AFNetworking](https://github.com/AFNetworking/AFNetworking)
+- [Masonry](https://github.com/SnapKit/Masonry) 
+- [AFNetworking](https://github.com/AFNetworking/AFNetworking)
 
 ##### Notes
 
