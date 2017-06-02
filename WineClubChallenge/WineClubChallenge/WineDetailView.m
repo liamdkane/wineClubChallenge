@@ -50,15 +50,27 @@ CGFloat wineViewBorder = 16.0;
     
     self.quantityTextField = [[UITextField alloc] init];
     self.quantityTextField.keyboardType = UIKeyboardTypeNumberPad;
+    self.quantityTextField.borderStyle = UITextBorderStyleLine;
+    self.quantityTextField.textAlignment = NSTextAlignmentCenter;
     
     self.addToCartButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [self.addToCartButton setTitle:@"Add to Cart" forState:UIControlStateNormal];
+    [self.addToCartButton addTarget:self action:@selector(addToCartButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     
     [self addSubview:self.imageView];
     [self addSubview:self.descriptionLabel];
     [self addSubview: self.addToCartLabel];
     [self addSubview:self.quantityTextField];
     [self addSubview:self.addToCartButton];
+}
+
+-(void)addToCartButtonPressed {
+    NSInteger quantity = [self.quantityTextField.text integerValue];
+    if (quantity == 0) {
+        self.quantityTextField.text = @"Invalid Quantity";
+        return;
+    }
+    [self.delegate AddToCartButtonPressed:self.wine quantity: quantity];
 }
 
 -(void)setupConstraints {
@@ -84,6 +96,7 @@ CGFloat wineViewBorder = 16.0;
     [self.quantityTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.addToCartLabel.mas_bottom).with.offset(wineViewBorder);
         make.centerX.equalTo(self);
+        make.width.with.offset(wineViewBorder * 10);
     }];
     
     [self.addToCartButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -91,5 +104,7 @@ CGFloat wineViewBorder = 16.0;
         make.centerX.equalTo(self);
     }];
 }
+
+
 
 @end

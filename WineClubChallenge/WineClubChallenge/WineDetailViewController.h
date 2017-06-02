@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "WineObject.h"
+#import "AddToCartButtonDelegate.h"
+#import "ShoppingCartMessenger.h"
 
-@interface WineDetailViewController : UIViewController
+@interface WineDetailViewController : UIViewController<AddToCartButtonDelegate>
 
+@property id<ShoppingCartMessenger> shoppingCartMessenger;
 -(instancetype)initWithWine:(WineObject *)wine;
 -(void)setImage: (UIImage *)image;
 @end

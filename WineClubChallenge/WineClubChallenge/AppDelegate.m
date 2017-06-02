@@ -29,10 +29,12 @@
     self.sessionManager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:configuration];
     self.sessionManager.responseSerializer = [AFImageResponseSerializer serializer];
     ApiNetworkCaller *apiManager = [[ApiNetworkCaller alloc] init];
-    //TODO: Add vcs for master and detail to manage.
     
     //Init SettingsMessenger
     self.settingsMessenger = [[SettingsMessenger alloc] init];
+    
+    //Init ShoppingCart
+    self.shoppingCart = [[ShoppingCart alloc] init];
     
     CategoryViewController *masterCategoryVC = [[CategoryViewController alloc] init];
     WineListTableViewController *wineListTVC = [[WineListTableViewController alloc] init];
@@ -40,7 +42,6 @@
     
     UISplitViewController *rootSplitViewController = [[UISplitViewController alloc] init];
     rootSplitViewController.viewControllers = [NSArray arrayWithObjects:masterCategoryVC, detailNavVC, nil];
-    
     
     //Linking managers to views they will speak to
     self.dataManager.categoryReceiver = masterCategoryVC;
@@ -50,6 +51,8 @@
     self.settingsMessenger.categorySearchReceiver = masterCategoryVC;
     self.settingsMessenger.wineSettingsReciever = wineListTVC;
     
+    wineListTVC.shoppingCartMessenger = self.shoppingCart;
+    
     //Making call to get the initial data
     [apiManager fetchCategories];
     [apiManager initialFetchWines];
@@ -58,7 +61,9 @@
     [self.window makeKeyAndVisible];
     
     return YES;
+    
 }
+
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {

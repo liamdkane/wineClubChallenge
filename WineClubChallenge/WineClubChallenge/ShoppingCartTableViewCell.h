@@ -1,20 +1,18 @@
 //
-//  WineTableViewCell.h
+//  ShoppingCartTableViewCell.h
 //  WineClubChallenge
 //
-//  Created by C4Q on 6/1/17.
+//  Created by C4Q on 6/2/17.
 //  Copyright © 2017 Liam Kane. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "WineObject.h"
 #import "AddToCartButtonDelegate.h"
+#import "WineObject.h"
 
-@interface WineTableViewCell : UITableViewCell
+@interface ShoppingCartTableViewCell : UITableViewCell
 
-@property (nonatomic) UIImageView *wineImageView;
 -(void)setWine:(WineObject *)wine;
-@property (nonatomic) WineObject* wine;
+@property UILabel *quantityLabel;
 @property id<AddToCartButtonDelegate> delegate;
-
 @end

@@ -10,6 +10,10 @@
 		81053EA31EDE67B20076F1B4 /* WineObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 81053EA21EDE67B20076F1B4 /* WineObject.m */; };
 		81053EA61EDEF34A0076F1B4 /* WineCategoryInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 81053EA51EDEF34A0076F1B4 /* WineCategoryInfo.m */; };
 		81053EA91EDF11BF0076F1B4 /* APINetworkCaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 81053EA81EDF11BF0076F1B4 /* APINetworkCaller.m */; };
+		810D60791EE17AF30091F7BF /* ShoppingCartTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 810D60781EE17AF30091F7BF /* ShoppingCartTableViewController.m */; };
+		810D607C1EE1801F0091F7BF /* ShoppingCart.m in Sources */ = {isa = PBXBuildFile; fileRef = 810D607B1EE1801F0091F7BF /* ShoppingCart.m */; };
+		810D60831EE198580091F7BF /* UIViewController+AddShoppingCartItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 810D60821EE198580091F7BF /* UIViewController+AddShoppingCartItem.m */; };
+		810D60861EE199BC0091F7BF /* ShoppingCartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 810D60851EE199BC0091F7BF /* ShoppingCartTableViewCell.m */; };
 		81252F861EE0D9B40097CA77 /* WineDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81252F851EE0D9B40097CA77 /* WineDetailViewController.m */; };
 		81252F891EE0DCB60097CA77 /* WineDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81252F881EE0DCB60097CA77 /* WineDetailView.m */; };
 		8166B2491EDE6250002C473B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8166B2481EDE6250002C473B /* main.m */; };
@@ -54,6 +58,17 @@
 		81053EA71EDEF3610076F1B4 /* WineCategoryInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WineCategoryInfo.h; sourceTree = "<group>"; };
 		81053EA81EDF11BF0076F1B4 /* APINetworkCaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APINetworkCaller.m; sourceTree = "<group>"; };
 		81053EAA1EDF11CB0076F1B4 /* APINetworkCaller.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APINetworkCaller.h; sourceTree = "<group>"; };
+		810D60701EE173E30091F7BF /* ShoppingCartMessenger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingCartMessenger.h; sourceTree = "<group>"; };
+		810D60771EE17AF30091F7BF /* ShoppingCartTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingCartTableViewController.h; sourceTree = "<group>"; };
+		810D60781EE17AF30091F7BF /* ShoppingCartTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingCartTableViewController.m; sourceTree = "<group>"; };
+		810D607A1EE1801F0091F7BF /* ShoppingCart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingCart.h; sourceTree = "<group>"; };
+		810D607B1EE1801F0091F7BF /* ShoppingCart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingCart.m; sourceTree = "<group>"; };
+		810D607D1EE189FF0091F7BF /* ShoppingCartDataReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingCartDataReceiver.h; sourceTree = "<group>"; };
+		810D60811EE198580091F7BF /* UIViewController+AddShoppingCartItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+AddShoppingCartItem.h"; sourceTree = "<group>"; };
+		810D60821EE198580091F7BF /* UIViewController+AddShoppingCartItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+AddShoppingCartItem.m"; sourceTree = "<group>"; };
+		810D60841EE199BC0091F7BF /* ShoppingCartTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingCartTableViewCell.h; sourceTree = "<group>"; };
+		810D60851EE199BC0091F7BF /* ShoppingCartTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingCartTableViewCell.m; sourceTree = "<group>"; };
+		810D60871EE19C660091F7BF /* AddToCartButtonDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddToCartButtonDelegate.h; sourceTree = "<group>"; };
 		81252F841EE0D9B40097CA77 /* WineDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WineDetailViewController.h; sourceTree = "<group>"; };
 		81252F851EE0D9B40097CA77 /* WineDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WineDetailViewController.m; sourceTree = "<group>"; };
 		81252F871EE0DCB60097CA77 /* WineDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WineDetailView.h; sourceTree = "<group>"; };
@@ -140,6 +155,27 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		810D606F1EE1737A0091F7BF /* Settings Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				81BAADC11EE076CD00CA0255 /* CategorySearchDelegate.h */,
+				81BAADC21EE076DB00CA0255 /* WineSettingsDelegate.h */,
+				81BAADBF1EE0734A00CA0255 /* SettingsReceiverDelegate.h */,
+			);
+			name = "Settings Protocols";
+			sourceTree = "<group>";
+		};
+		810D60891EE1AE0E0091F7BF /* Shopping Cart Layer */ = {
+			isa = PBXGroup;
+			children = (
+				810D60701EE173E30091F7BF /* ShoppingCartMessenger.h */,
+				810D607D1EE189FF0091F7BF /* ShoppingCartDataReceiver.h */,
+				810D607A1EE1801F0091F7BF /* ShoppingCart.h */,
+				810D607B1EE1801F0091F7BF /* ShoppingCart.m */,
+			);
+			name = "Shopping Cart Layer";
+			sourceTree = "<group>";
+		};
 		8166B23B1EDE6250002C473B = {
 			isa = PBXGroup;
 			children = (
@@ -165,11 +201,12 @@
 			children = (
 				8166B24A1EDE6250002C473B /* AppDelegate.h */,
 				8166B24B1EDE6250002C473B /* AppDelegate.m */,
-				81BAADC01EE0767F00CA0255 /* Settings Layer */,
+				81A69F231EDF6F6300425C51 /* View Controllers */,
 				81BAADB51EE05F1700CA0255 /* Views */,
 				81A69F201EDF6F1E00425C51 /* Models */,
+				810D60891EE1AE0E0091F7BF /* Shopping Cart Layer */,
+				81BAADC01EE0767F00CA0255 /* Settings Layer */,
 				81A69F221EDF6F5700425C51 /* Networking Layer */,
-				81A69F231EDF6F6300425C51 /* View Controllers */,
 				81A69F241EDF6F7600425C51 /* Supporting Files */,
 			);
 			path = WineClubChallenge;
@@ -210,6 +247,8 @@
 		81A69F231EDF6F6300425C51 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				810D60771EE17AF30091F7BF /* ShoppingCartTableViewController.h */,
+				810D60781EE17AF30091F7BF /* ShoppingCartTableViewController.m */,
 				81A69F181EDF4F8200425C51 /* CategoryViewController.h */,
 				81A69F191EDF4F8200425C51 /* CategoryViewController.m */,
 				8166B26F1EDE649E002C473B /* WineListTableViewController.h */,
@@ -231,6 +270,8 @@
 				81D6DFD31EE1029300302260 /* NSString_StripHtml.h */,
 				81D6DFD51EE1119B00302260 /* UISplitViewController+ErrorHandling.h */,
 				81D6DFD61EE1119B00302260 /* UISplitViewController+ErrorHandling.m */,
+				810D60811EE198580091F7BF /* UIViewController+AddShoppingCartItem.h */,
+				810D60821EE198580091F7BF /* UIViewController+AddShoppingCartItem.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -249,6 +290,8 @@
 		81BAADB51EE05F1700CA0255 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				810D60841EE199BC0091F7BF /* ShoppingCartTableViewCell.h */,
+				810D60851EE199BC0091F7BF /* ShoppingCartTableViewCell.m */,
 				81BAADB21EE0472800CA0255 /* WineTableViewCell.h */,
 				81BAADB31EE0472800CA0255 /* WineTableViewCell.m */,
 				81A69F2D1EDF889A00425C51 /* CategoryTableViewCell.h */,
@@ -259,6 +302,7 @@
 				81BAADBA1EE067A800CA0255 /* SettingsLabel.m */,
 				81252F871EE0DCB60097CA77 /* WineDetailView.h */,
 				81252F881EE0DCB60097CA77 /* WineDetailView.m */,
+				810D60871EE19C660091F7BF /* AddToCartButtonDelegate.h */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -268,9 +312,7 @@
 			children = (
 				81BAADBC1EE0730800CA0255 /* SettingsMessenger.h */,
 				81BAADBD1EE0730800CA0255 /* SettingsMessenger.m */,
-				81BAADC11EE076CD00CA0255 /* CategorySearchDelegate.h */,
-				81BAADC21EE076DB00CA0255 /* WineSettingsDelegate.h */,
-				81BAADBF1EE0734A00CA0255 /* SettingsReceiverDelegate.h */,
+				810D606F1EE1737A0091F7BF /* Settings Protocols */,
 			);
 			name = "Settings Layer";
 			sourceTree = "<group>";
@@ -489,9 +531,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				81053EA91EDF11BF0076F1B4 /* APINetworkCaller.m in Sources */,
+				810D60861EE199BC0091F7BF /* ShoppingCartTableViewCell.m in Sources */,
 				81A69F1D1EDF521800425C51 /* DataMessenger.m in Sources */,
 				81BAADBE1EE0730800CA0255 /* SettingsMessenger.m in Sources */,
 				81053EA61EDEF34A0076F1B4 /* WineCategoryInfo.m in Sources */,
+				810D60791EE17AF30091F7BF /* ShoppingCartTableViewController.m in Sources */,
 				8166B24C1EDE6250002C473B /* AppDelegate.m in Sources */,
 				81A69F2F1EDF889A00425C51 /* CategoryTableViewCell.m in Sources */,
 				81BAADB81EE05F4500CA0255 /* SettingsView.m in Sources */,
@@ -501,9 +545,11 @@
 				8166B2491EDE6250002C473B /* main.m in Sources */,
 				81053EA31EDE67B20076F1B4 /* WineObject.m in Sources */,
 				81252F891EE0DCB60097CA77 /* WineDetailView.m in Sources */,
+				810D607C1EE1801F0091F7BF /* ShoppingCart.m in Sources */,
 				81D6DFD71EE1119B00302260 /* UISplitViewController+ErrorHandling.m in Sources */,
 				81BAADB11EDFB18D00CA0255 /* WineApiKeys.m in Sources */,
 				81252F861EE0D9B40097CA77 /* WineDetailViewController.m in Sources */,
+				810D60831EE198580091F7BF /* UIViewController+AddShoppingCartItem.m in Sources */,
 				81BAADB41EE0472800CA0255 /* WineTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -638,10 +684,6 @@
 				DEVELOPMENT_TEAM = N2N3K3G7JW;
 				INFOPLIST_FILE = WineClubChallenge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/build/Debug-iphoneos",
-				);
 				MACH_O_TYPE = mh_execute;
 				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4q.liamkane.WineClubChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -659,10 +701,6 @@
 				DEVELOPMENT_TEAM = N2N3K3G7JW;
 				INFOPLIST_FILE = WineClubChallenge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/build/Debug-iphoneos",
-				);
 				MACH_O_TYPE = mh_execute;
 				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4q.liamkane.WineClubChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -10,7 +10,7 @@
 #define WineObject_h
 #import <UIKit/UIKit.h>
 
-@interface WineObject : NSObject
+@interface WineObject : NSObject<NSCopying>
 
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *wineDescription;
@@ -19,8 +19,12 @@
 @property (nonatomic, retain) NSArray *category;
 @property (nonatomic, retain) UIImage *thumbImage;
 @property (nonatomic, retain) UIImage *largeImage;
+@property (nonatomic, retain) NSDate *timeAddedToCart;
 
 -(instancetype)initWithDictionary:(NSDictionary *)wineDictionary;
+
+-(BOOL)isEqual:(WineObject*)object;
+-(NSUInteger)hash;
 
 
 @end

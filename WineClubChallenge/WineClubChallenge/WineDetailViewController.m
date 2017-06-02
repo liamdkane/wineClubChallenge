@@ -9,6 +9,7 @@
 #import "WineDetailViewController.h"
 #import "WineDetailView.h"
 #import "Masonry.h"
+#import "UIViewController+AddShoppingCartItem.h"
 
 @interface WineDetailViewController ()
 
@@ -22,13 +23,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    
-    self.detailView = [[WineDetailView alloc] initWithWine:self.wine];
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self.view addSubview:self.detailView];
-    [self.detailView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
-    }];
+    [self addShoppingCartButton];
+    [self setupDetailView];
 }
 
 -(instancetype)initWithWine:(WineObject *)wine {
@@ -38,6 +34,21 @@
     }
     [self.navigationItem setTitle:wine.name];
     return self;
+}
+
+-(void)setupDetailView {
+    self.detailView = [[WineDetailView alloc] initWithWine:self.wine];
+    self.detailView.delegate = self;
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    [self.view addSubview:self.detailView];
+    [self.detailView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+}
+
+-(void)AddToCartButtonPressed:(WineObject *)wine quantity:(NSInteger)quantity {
+    [self.shoppingCartMessenger addToShoppingCart:wine quantity:quantity];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)setImage:(UIImage *)image {

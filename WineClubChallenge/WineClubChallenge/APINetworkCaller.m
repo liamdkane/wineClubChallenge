@@ -61,6 +61,7 @@
     
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
     AFImageDownloadReceipt *task = [imageDownloader downloadImageForURLRequest:request success:^(NSURLRequest * _Nonnull request,NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull responseObject) {
+        
         if (isItThumbnail) {
             [wine setThumbImage:responseObject];
         } else {
@@ -69,11 +70,13 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.delegate didReceiveWineImage:wine thumb:isItThumbnail];
         });
+        
     } failure:^(NSURLRequest * _Nonnull request,
                 NSHTTPURLResponse * _Nullable response,
                 NSError * _Nonnull error) {
         
         [self.delegate didReceiveError:error];
+        
     }];
     [task.task resume];
 }
@@ -140,8 +143,6 @@
         }
     }];
     [dataTask resume];
-    
-    
 }
 
 @end

@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "WineObject.h"
+#import "AddToCartButtonDelegate.h"
 
 @interface WineDetailView : UIView
 
 @property UIImageView* imageView;
+@property id<AddToCartButtonDelegate> delegate;
 -(instancetype)initWithWine: (WineObject *)wine;
 
 @end

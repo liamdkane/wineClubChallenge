@@ -12,6 +12,7 @@
 #import "WineCategoryInfo.h"
 #import "APINetworkCaller.h"
 #import "WineDetailViewController.h"
+#import "UIViewController+AddShoppingCartItem.h"
 
 @interface WineListTableViewController ()
 
@@ -30,6 +31,7 @@ NSString *kWineCellId = @"Wine Cell ReuseId";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView registerClass: [WineTableViewCell class] forCellReuseIdentifier:kWineCellId];
+    [self addShoppingCartButton];
 }
 
 
@@ -45,7 +47,7 @@ NSString *kWineCellId = @"Wine Cell ReuseId";
         for (WineTableViewCell* cell in cells) {
             if (cell.wine == wineWithImage) {
                 UIImage *image = wineWithImage.thumbImage;
-                [cell.imageView setImage:image];
+                [cell.wineImageView setImage:image];
                 [cell setNeedsLayout];
             }
         }
@@ -53,6 +55,10 @@ NSString *kWineCellId = @"Wine Cell ReuseId";
         WineDetailViewController* detailVC = (WineDetailViewController *)self.navigationController.topViewController;
         [detailVC setImage:wineWithImage.largeImage];
     }
+}
+
+-(void)AddToCartButtonPressed:(WineObject *)wine quantity:(NSInteger)quantity {
+    [self.shoppingCartMessenger addToShoppingCart:wine quantity:quantity];
 }
 
 #pragma SettingsViewDelegate Methods
@@ -84,14 +90,14 @@ NSString *kWineCellId = @"Wine Cell ReuseId";
     if (cell == nil) {
         cell = [[WineTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kWineCellId];
     }
-    
     WineObject* currentWine = [self currentWinesIn:indexPath.section][indexPath.row];
-    if (currentWine.thumbImage) {
-        cell.imageView.image = currentWine.thumbImage;
-    } else {
+    
+    if (currentWine.thumbImage == nil) {
         [[[ApiNetworkCaller alloc]init] fetchImage:currentWine thumb:YES];
     }
+    
     [cell setWine: currentWine];
+    cell.delegate = self;
     return cell;
 }
 
@@ -103,18 +109,10 @@ NSString *kWineCellId = @"Wine Cell ReuseId";
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     WineTableViewCell* currentCell = [tableView cellForRowAtIndexPath:indexPath];
     WineDetailViewController* detailVC = [[WineDetailViewController alloc] initWithWine:currentCell.wine];
-    
+    detailVC.shoppingCartMessenger = self.shoppingCartMessenger;
     [[[ApiNetworkCaller alloc]init]fetchImage:currentCell.wine thumb:NO];
     
     [self.navigationController pushViewController:detailVC animated:YES];
-}
-
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-}
-
--(void)tableView:(UITableView *)tableView prefetchRowsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths {
-    
 }
 
 #pragma mark - Helper Functions
@@ -127,6 +125,8 @@ NSString *kWineCellId = @"Wine Cell ReuseId";
     [self.tableView reloadData];
 }
 
+
+//These helper functions should be refactored into an extension so that another view that might want to sort wine can do so
 -(NSArray*)currentWinesIn:(NSInteger)section {
     if (self.categories) {
         WineCategory* currentCategory = self.categories[section];

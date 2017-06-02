@@ -66,5 +66,29 @@
     return [self initWithName:name description:description thumbImageURL:thumbImageUrl largeImageURL:largeImageUrl category:category];
 }
 
+-(BOOL)isEqual:(WineCategory *)object {
+    return [object.name isEqualToString:self.name];
+}
+
+-(NSUInteger)hash {
+    return self.name.hash;
+}
+
+-(id)copyWithZone:(NSZone *)zone {
+    WineObject *copy = [[[self class] alloc] init];
+    
+    if (copy) {
+        copy.name = self.name;
+        copy.wineDescription = self.wineDescription;
+        copy.thumbImageURL = self.thumbImageURL;
+        copy.largeImageURL = self.largeImageURL;
+        copy.category = self.category;
+        copy.thumbImage = self.thumbImage;
+        copy.largeImage = self.largeImage;
+        copy.timeAddedToCart = self.timeAddedToCart;
+    }
+    
+    return copy;
+}
 
 @end
