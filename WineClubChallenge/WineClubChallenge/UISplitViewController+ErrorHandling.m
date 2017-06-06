@@ -15,7 +15,7 @@
     
     UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"OK"
                                                        style:UIAlertActionStyleDefault
-                                                     handler:nil]; //You can use a block here to handle a press on this button
+                                                     handler:nil];
     [alert addAction:actionOk];
     [self presentViewController:alert animated:YES completion:nil];
 }

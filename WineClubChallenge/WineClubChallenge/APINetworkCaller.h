@@ -20,6 +20,7 @@
 //the bool here is pretty janky, normally i'd use an enum in swift
 -(void)fetchImage: (WineObject *)wine thumb:(BOOL)isItThumbnail;
 
+
 @end
 
 #endif /* APINetworkCaller_h */
