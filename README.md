@@ -32,4 +32,4 @@ Further notes regarding decisions are documented in the project.
 Thank you for your time and consideration. I am really looking forward to speaking with you about this project.
 
 
-
+--the project only runs on an iPad in landscape
