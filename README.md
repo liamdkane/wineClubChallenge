@@ -7,6 +7,9 @@ Liam Kane
 - XCode 8.3.2
 - PostMan
 
+- The project only runs on an iPad in landscape
+
+
 ## Frameworks used
 - [Masonry](https://github.com/SnapKit/Masonry) 
 - [AFNetworking](https://github.com/AFNetworking/AFNetworking)
@@ -32,4 +35,3 @@ Further notes regarding decisions are documented in the project.
 Thank you for your time and consideration. I am really looking forward to speaking with you about this project.
 
 
---the project only runs on an iPad in landscape
